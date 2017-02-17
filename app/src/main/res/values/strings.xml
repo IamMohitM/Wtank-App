@@ -3,4 +3,8 @@
     <string name="full">Full</string>
     <string name="empty">Empty</string>
     <string name="distance">Distance</string>
+    <string name="client_name">Client</string>
+    <string name="User_name">Username</string>
+    <string name="client_key">Client_key</string>
+    <string name="device_no">Device Number</string>
 </resources>
