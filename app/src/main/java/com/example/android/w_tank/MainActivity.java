@@ -96,7 +96,7 @@ public class MainActivity extends ListActivity {
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,nodeList);
                 listView.setAdapter(adapter);
             } catch (JSONException e) {
-                Log.e(TAG,""+e.getMessage());
+              //  Log.e(TAG,""+e.getMessage());
             }
         }
 
