@@ -50,7 +50,7 @@
     <Button
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/Button"
+        android:text="Get Data"
         android:id="@+id/get_data"/>
 
 </GridLayout>

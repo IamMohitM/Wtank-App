@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -24,8 +25,7 @@ public class NodeActivity extends Activity {
 
     ProgressDialog progressDialog;
     private static final String TAG=NodeActivity.class.getSimpleName();
-    private static final String NODE_URL="http://aws2.axelta.com/services/node/getTransactions?user_name=mohit@axelta.com&device_no=wtank" +
-            "&node_no=";
+    private static final String NODE_URL="http://aws2.axelta.com/services/node/getTransactions?user_name=";
     private static final String LIMIT="&limit=1";
 
     @Override
@@ -34,7 +34,10 @@ public class NodeActivity extends Activity {
 
         setContentView(R.layout.activity_node);
         String NODE_NO=MainActivity.nodes[getIntent().getIntExtra("POSITION",0)];
-        new GetNodeData().execute(NODE_URL+NODE_NO+LIMIT);
+        String DEVICE_NO=getIntent().getStringExtra("device");
+        String USER_NAME=getIntent().getStringExtra("user_name");
+        Log.e(TAG,NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
+        new GetNodeData().execute(NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
 
         getActionBar().setTitle("Node "+NODE_NO);
     }
