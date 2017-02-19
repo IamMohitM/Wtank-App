@@ -1,5 +1,6 @@
 package com.example.android.w_tank;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.icu.text.IDNA;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class InfoActivity extends AppCompatActivity {
+public class InfoActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,10 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(InfoActivity.this,MainActivity.class);
-                intent.putExtra(MainActivity.ClientNameTag,clientName.getText());
-                intent.putExtra(MainActivity.ClientKEYTag,clientKey.getText());
-                intent.putExtra(MainActivity.USERNameTag,UserName.getText());
-                intent.putExtra(MainActivity.DeviceNumberTag,deviceNumber.getText());
+                intent.putExtra("cname",clientName.getText().toString());
+                intent.putExtra("key",clientKey.getText().toString());
+                intent.putExtra("uname",UserName.getText().toString());
+                intent.putExtra("device",deviceNumber.getText().toString());
                 startActivity(intent);
 
             }
