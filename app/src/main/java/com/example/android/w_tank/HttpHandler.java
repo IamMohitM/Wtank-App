@@ -53,6 +53,7 @@ public class HttpHandler {
             Log.e(Tag,"Exception: "+e.getMessage());
         }
 
+        Log.e(Tag,"My response "+response);
         return response;
     }
 

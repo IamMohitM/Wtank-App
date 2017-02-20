@@ -5,30 +5,28 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
 
 public class MainActivity extends ListActivity {
 
     public static final String TAG=MainActivity.class.getSimpleName();
 
     public static String[] nodes;
-    /*public  String ClientName;
-    public  String UserName;
-    public  String ClientKey;*/
     public  String DeviceNumber;
     public String UserName;
     public static ArrayList<String> nodeList=new ArrayList<String >();
@@ -81,7 +79,7 @@ public class MainActivity extends ListActivity {
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
             try {
-
+                Log.e(TAG,"Main "+s);
                 JSONArray nodeArray=new JSONArray(s);
                 JSONObject obj=nodeArray.getJSONObject(0);
                 JSONArray nodeData=obj.getJSONArray("node_data");
@@ -95,14 +93,17 @@ public class MainActivity extends ListActivity {
                 }
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,nodeList);
                 listView.setAdapter(adapter);
-            } catch (JSONException e) {
-              //  Log.e(TAG,""+e.getMessage());
+            } catch (Exception e) {
+                Log.e(TAG,""+e.getMessage());
+                Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,InfoActivity.class));
             }
         }
 
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected String doInBackground(String ...url) {
+            Log.v(TAG,"Url "+url[0]);
             return new HttpHandler().makeServiceCall(url[0]);
         }
     }

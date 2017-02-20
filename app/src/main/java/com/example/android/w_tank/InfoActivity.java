@@ -2,9 +2,8 @@ package com.example.android.w_tank;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.icu.text.IDNA;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,12 +23,18 @@ public class InfoActivity extends Activity {
         getData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(InfoActivity.this,MainActivity.class);
-                intent.putExtra("cname",clientName.getText().toString());
-                intent.putExtra("key",clientKey.getText().toString());
-                intent.putExtra("uname",UserName.getText().toString());
-                intent.putExtra("device",deviceNumber.getText().toString());
-                startActivity(intent);
+                try {
+                    Intent intent = new Intent(InfoActivity.this, MainActivity.class);
+                    intent.putExtra("cname", clientName.getText().toString());
+                    intent.putExtra("key", clientKey.getText().toString());
+                    intent.putExtra("uname", UserName.getText().toString());
+                    intent.putExtra("device", deviceNumber.getText().toString());
+                    startActivity(intent);
+                }
+                catch(Exception e)
+                {
+                    Log.v("Info Activity",""+e.getMessage());
+                }
 
             }
         });

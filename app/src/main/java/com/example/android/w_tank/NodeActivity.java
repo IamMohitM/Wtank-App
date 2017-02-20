@@ -32,14 +32,18 @@ public class NodeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_node);
-        String NODE_NO=MainActivity.nodes[getIntent().getIntExtra("POSITION",0)];
-        String DEVICE_NO=getIntent().getStringExtra("device");
-        String USER_NAME=getIntent().getStringExtra("user_name");
-        //Log.e(TAG,NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
-        new GetNodeData().execute(NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
+        try {
+            setContentView(R.layout.activity_node);
+            String NODE_NO=MainActivity.nodes[getIntent().getIntExtra("POSITION",0)];
+            String DEVICE_NO=getIntent().getStringExtra("device");
+            String USER_NAME=getIntent().getStringExtra("user_name");
+            Log.e(TAG,NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
+            new GetNodeData().execute(NODE_URL+USER_NAME+"&device_no="+DEVICE_NO+"&node_no="+NODE_NO+LIMIT);
 
-        getActionBar().setTitle("Node "+NODE_NO);
+            getActionBar().setTitle("Node "+NODE_NO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
